@@ -61,4 +61,4 @@ Pod slovem na uhádnutí bude klávesnice, která bude ukazovat všechna písmen
 jste uhodl dobře nebo ne, písmenko podle toho na klávesnici zčervená (špatně) nebo zezelená (správně).
 
 ## Postup v programování hry
-Procentuálně 5%, zatím byla pouze napsána tato stránka, která popisu jak bude hra vypadat a probíhat.
+Procentuálně 3%, zatím byla pouze napsána tato stránka, která popisu jak bude hra vypadat a probíhat.
