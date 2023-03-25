@@ -11,7 +11,7 @@ slovo do určitého počtu pokusů, tak prohrajete.
 ## Spuštění
 Po zapnutí hry se Vám objeví hlavní menu, v něm budou 4 tlačítka a to Hrát, Statistiky, Nastavení a Odejít ze hry.
 
-### Tlačítko Hrát
+### Tlačítko Hrát Hangman
 Zapne hru Hangman.
 
 ### Tlačítko Statistiky
@@ -21,7 +21,7 @@ Informace o obtížnostech jsou uvedeny níže.
 ### Tlačítko Nastavení
 Zde budou uvedeny 2 posuvné tlačítka na hlasitost zvukových efektů a hudby, dále tlačítko na dání hry celou obrazovku a tlačítko zpět, které Vás vrátí na hlavní menu.
 
-### Tlačítko Odejít ze hry
+### Tlačítko Vypnout hru
 Vypne hru Hangman.
 
 ## Zapnutí hry Hangman
