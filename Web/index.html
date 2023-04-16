@@ -1,8 +1,3 @@
-
-
-
-
-
 <!-- BASE ---------------------------------------------------------------------------------------------------->
 <!-- BASE ---------------------------------------------------------------------------------------------------->
 <!-- BASE ---------------------------------------------------------------------------------------------------->
@@ -149,7 +144,7 @@ opacity: 0;
 visibility: hidden;
 position: fixed;
 width: 400px;
-height: 680px;
+height: 700px;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
@@ -223,6 +218,93 @@ width: 100%;
 height: 100%;
 }
 
+.login-popup, .register-popup {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1d1d1d;
+  color: white;
+  border-radius: 30px;
+  border: 3px solid #898989;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 1;
+  transition: opacity 0.2s, visibility 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-popup {
+  width: 400px;
+  height: 400px;
+}
+
+.register-popup {
+  width: 400px;
+  height: 530px;
+}
+
+
+
+.login-popup.visible, .register-popup.visible {
+  display: flex;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 0;
+}
+
+.form-field label {
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-family: Calibri, sans-serif;
+}
+
+.form-field input[type="text"],
+.form-field input[type="password"],
+.form-field input[type="email"] {
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid #898989;
+  background-color: #3F3F3F;
+  color: white;
+}
+
+.form-field input[type="submit"] {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 18px;
+  background-color: #3F3F3F;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-field input[type="submit"]:hover {
+  background-color: #545454;
+}
+
+.form-switch {
+  margin-top: 10px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.form-switch:hover {
+  color: white;
+}
+
 @media (max-width: 800px) {
   .buttonreg, .buttoninfo {
     display: none;
@@ -265,6 +347,69 @@ function showPopup() {
 
 function closePopup() {
   document.querySelector('.popup').classList.remove('visible');
+  document.querySelector('.login-popup').classList.remove('visible');
+  document.querySelector('.register-popup').classList.remove('visible');
+  document.querySelector('.overlay').classList.remove('visible');
+}
+
+
+function showLoginPopup() {
+  document.querySelector('.login-popup').classList.add('visible');
+  document.querySelector('.overlay').classList.add('visible');
+}
+
+function showRegisterPopup() {
+  document.querySelector('.register-popup').classList.add('visible');
+  document.querySelector('.overlay').classList.add('visible');
+}
+
+function closeLoginPopup() {
+  document.querySelector('.login-popup').classList.remove('visible');
+  document.querySelector('.login-popup').classList.remove('visible');
+}
+
+  function login(event) {
+  event.preventDefault();
+  const username = document.getElementById('login-username').value;
+  const password = document.getElementById('login-password').value;
+  
+  // Add your login functionality here
+  console.log('Logging in user:', username);
+}
+
+function register(event) {
+  event.preventDefault();
+  const username = document.getElementById('register-username').value;
+  const email = document.getElementById('register-email').value;
+  const password = document.getElementById('register-password').value;
+  const confirmPassword = document.getElementById('register-confirm-password').value;
+  
+  if (password !== confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+  
+  // Add your registration functionality here
+  console.log('Registering user:', username);
+}
+
+function switchToLogin() {
+  closeRegisterPopup();
+  showLoginPopup();
+}
+
+function switchToRegister() {
+  closeLoginPopup();
+  showRegisterPopup();
+}
+
+function closeLoginPopup() {
+  document.querySelector('.login-popup').classList.remove('visible');
+  document.querySelector('.overlay').classList.remove('visible');
+}
+
+function closeRegisterPopup() {
+  document.querySelector('.register-popup').classList.remove('visible');
   document.querySelector('.overlay').classList.remove('visible');
 }
 
@@ -287,13 +432,13 @@ function closePopup() {
     <div class="maindiv">
         <h1><img src="hangman-icon-white.png" alt="Hangman icon">HANGMAN</h1>
         <div class="buttons-container">
-          <button class="buttonreg"><img src="login_icon.png" alt="Icon"><b>Přihlášení</b></button>
+          <button class="buttonreg" onclick="showLoginPopup();"><img src="login_icon.png" alt="Icon"><b>Přihlášení</b></button>
           <button class="buttoninfo" onclick="showPopup();"><img src="jak_hrat_icon.png" alt="Icon"><b>Pomoc</b></button>
           <button class="button-more"><img src="more_icon.png" alt="Icon"></button>
         </div>
     </div>
     <div class="overlay" onclick="closePopup();"></div>
-    <div class="popup">
+    <div class="popup info-popup">
         <div class="close-button" onclick="closePopup();"><img src="close_icon.png" alt="Close Icon"></div>
         <h2>O čem je Hangman</h2>
         <div class="underline"></div>
@@ -309,6 +454,53 @@ function closePopup() {
             chyba. Naopak, pokud písmenko je v hádaném slově, rozsvítí se zeleně a přidá se do pole se slovem.
         </p>
     </div>
+<div class="popup login-popup">
+    <div class="close-button" onclick="closeLoginPopup();"><img src="close_icon.png" alt="Close Icon"></div>
+    <h2>Přihlášení</h2>
+    <div class="underline"></div>
+    <form onsubmit="login(event);">
+        <div class="form-field">
+            <label for="login-username">Přihlašovací jméno</label>
+            <input type="text" id="login-username" required>
+        </div>
+        <div class="form-field">
+            <label for="login-password">Heslo</label>
+            <input type="password" id="login-password" required>
+        </div>
+        <div class="form-field">
+            <input type="submit" value="Login">
+        </div>
+    </form>
+    <p class="form-switch" onclick="switchToRegister();">Nemáš ještě účet? Klikni a zaregistruj se!</p>
+</div>
+
+<div class="popup register-popup">
+    <div class="close-button" onclick="closeRegisterPopup();"><img src="close_icon.png" alt="Close Icon"></div>
+    <h2>Registrace</h2>
+    <div class="underline"></div>
+    <form onsubmit="register(event);">
+        <div class="form-field">
+            <label for="register-username">Přihlašovací jméno</label>
+            <input type="text" id="register-username" required>
+        </div>
+        <div class="form-field">
+            <label for="register-email">Email</label>
+            <input type="email" id="register-email" required>
+        </div>
+        <div class="form-field">
+            <label for="register-password">Heslo</label>
+            <input type="password" id="register-password" required>
+        </div>
+        <div class="form-field">
+            <label for="register-confirm-password">Heslo znovu</label>
+            <input type="password" id="register-confirm-password" required>
+        </div>
+        <div class="form-field">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+    <p class="form-switch" onclick="switchToLogin();">Už máš účet? Klikni a přihlaš se!</p>
+</div>
 
 </body>
 
