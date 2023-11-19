@@ -1,0 +1,34 @@
+CREATE TABLE Hrac (
+    hrac_id INT NOT NULL,
+    hrac_jmeno CHAR(50) NOT NULL,
+    hrac_heslo CHAR(50) NOT NULL,
+    hrac_email CHAR(50) NOT NULL,
+    stat_id INT NOT NULL UNIQUE,
+    PRIMARY KEY (hrac_id),
+    FOREIGN KEY (stat_id) REFERENCES Statistiky(stat_id)
+);
+
+CREATE TABLE Statistiky (
+    stat_id INT NOT NULL,
+    easy_vyhry INT(9999999) NOT NULL,
+    easy_prohry INT(9999999) NOT NULL,
+    medium_vyhry INT(9999999) NOT NULL,
+    medium_prohry INT(9999999) NOT NULL,
+    hard_vyhry INT(9999999) NOT NULL,
+    hard_prohry INT(9999999) NOT NULL,
+    PRIMARY KEY (stat_id)
+);
+
+INSERT INTO Hrac (hrac_jmeno, hrac_heslo, hrac_email, stat_id)
+VALUES ("rnduser", "124587", "rnduser@gmail.com", 1),
+	   ("ratata87", "ahoj12", "rata85@seznam.cz", 2),
+	   ("hangmanmaster1", "heslo74_", "ahoj7@gmail.com", 3),
+       ("neconwm", "agq5457vb5a", "qwerty@email.cz", 4),
+       ("myskaa7", "777555", "mysk2@gmail.com", 5),
+
+INSERT INTO Statistiky (easy_vyhry, easy_prohry, medium_vyhry, medium_prohry, hard_vyhry, hard_prohry)
+VALUES (30, 10, 14, 12, 9, 15),
+	   (150, 45, 203, 52, 101, 89),
+	   (2, 0, 5, 0, 172, 169),
+       (247, 78, 5, 7, 1, 7),
+       (12, 2, 2, 1, 1, 0),
